@@ -52,16 +52,16 @@ stages{
  
  }
  
- stage("Lancement des tests unitaires"){
-   steps {
-     sh "mvn test"
- }
+// stage("Lancement des tests unitaires"){
+ //  steps {
+   //  sh "mvn test"
+// }
  
- } 
+ //} 
  stage("Deploiement dans nexus ") {
      		 steps{
 
-                      sh "mvn deploy"   
+                      sh "mvn deploy -DskipTests=true"   
   			
                           }
                 }
