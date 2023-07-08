@@ -3,7 +3,18 @@ agent any
 //triggers {
 //cron('*/4 * * * *')
 //}
-
+environment {
+        // This can be nexus3 or nexus2
+        NEXUS_VERSION = "nexus3"
+        // This can be http or https
+        NEXUS_PROTOCOL = "http"
+        // Where your Nexus is running
+        NEXUS_URL = "localhost:8081/Nexus"
+        // Repository where we will upload the artifact
+        NEXUS_REPOSITORY = "Releases"
+        // Jenkins credential id to authenticate to Nexus OSS
+        NEXUS_CREDENTIAL_ID = "admin:admin123"
+    }
 stages{
  stage('clone git'){
     steps {
@@ -13,7 +24,7 @@ stages{
     }
  
  }
-
+ 
  stage('Verificationdu version Maven'){
    steps {
       sh "mvn --version"
@@ -47,7 +58,11 @@ stages{
  }
  
  } 
- 
+ stage("Deploiement dans nexus ") {
+     		 steps{
+                          }
+  			sh "mvn deploy"
+                }
  
  
  
